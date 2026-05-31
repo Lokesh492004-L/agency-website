@@ -1,79 +1,74 @@
 "use client"
 
 import { motion, useInView } from "framer-motion"
-import { ShieldCheck, Zap, Users, BarChart3, Clock, HeartHandshake } from "lucide-react"
-import { useRef } from "react"
+import { Zap, Eye, Brain, Target, Palette, HeartHandshake, ArrowRight } from "lucide-react"
+import { useRef, useState } from "react"
 
 const reasons = [
   {
-    icon: ShieldCheck,
-    title: "Proven Results",
-    description: "Every strategy we implement is backed by data and a track record of measurable success for our clients.",
-    gradient: "from-blue-500/20 to-cyan-500/20",
-  },
-  {
     icon: Zap,
-    title: "Fast Execution",
-    description: "We move quickly without cutting corners — delivering high-quality work on timelines that keep your business moving.",
+    title: "Fast Delivery",
+    description: "We move quickly without sacrificing quality, getting your project live faster.",
     gradient: "from-yellow-500/20 to-orange-500/20",
   },
   {
-    icon: Users,
-    title: "Dedicated Team",
-    description: "A focused team of designers, strategists, and engineers committed to your brand's growth from day one.",
+    icon: Eye,
+    title: "Premium Visuals",
+    description: "Every pixel is crafted to create stunning, memorable experiences.",
     gradient: "from-purple-500/20 to-pink-500/20",
   },
   {
-    icon: BarChart3,
-    title: "Growth-Oriented",
-    description: "Every decision we make is tied to your bottom line — we build for impact, not just aesthetics.",
-    gradient: "from-green-500/20 to-emerald-500/20",
+    icon: Brain,
+    title: "AI Expertise",
+    description: "Cutting-edge AI solutions that give you a competitive advantage.",
+    gradient: "from-blue-500/20 to-cyan-500/20",
   },
   {
-    icon: Clock,
-    title: "Always Available",
-    description: "Our AI-powered systems and responsive team ensure you're never left waiting for support or updates.",
-    gradient: "from-rose-500/20 to-red-500/20",
+    icon: Target,
+    title: "Conversion Focus",
+    description: "Design that doesn&apos;t just look good but drives real business results.",
+    gradient: "from-red-500/20 to-rose-500/20",
+  },
+  {
+    icon: Palette,
+    title: "Modern Branding",
+    description: "Contemporary brand systems that stand out in crowded markets.",
+    gradient: "from-emerald-500/20 to-teal-500/20",
   },
   {
     icon: HeartHandshake,
-    title: "Long-Term Partnership",
-    description: "We don't just deliver a project and disappear — we grow alongside your brand as a trusted partner.",
-    gradient: "from-teal-500/20 to-cyan-500/20",
+    title: "Ongoing Support",
+    description: "We&apos;re your long-term partner, not just a one-time vendor.",
+    gradient: "from-violet-500/20 to-indigo-500/20",
   },
 ]
 
 export function WhyChooseUs() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   return (
-    <section id="why-choose-us" className="py-32 relative overflow-hidden" ref={ref}>
-      {/* Animated background glows */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          className="absolute top-1/3 -left-40 w-96 h-96 rounded-full blur-3xl opacity-20"
-          style={{ background: "oklch(0.65 0.25 270)" }}
-          animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.3, 0.2] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute bottom-1/3 -right-40 w-80 h-80 rounded-full blur-3xl opacity-15"
-          style={{ background: "oklch(0.55 0.28 200)" }}
-          animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.25, 0.15] }}
-          transition={{ duration: 7, delay: 1.5, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
+    <section className="py-32 relative noise overflow-hidden" ref={ref}>
+      {/* Animated background */}
+      <motion.div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full blur-3xl opacity-10"
+        style={{ background: "oklch(0.65 0.25 270)" }}
+        animate={{
+          scale: [1, 1.2, 1],
+          rotate: [0, 180, 360],
+        }}
+        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+      />
 
       <div className="max-w-7xl mx-auto px-6 relative">
-        {/* Section heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }}
           className="text-center mb-20"
         >
-          <motion.span
+          <motion.span 
             className="text-sm uppercase tracking-[0.2em] text-primary mb-4 block"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -81,77 +76,126 @@ export function WhyChooseUs() {
           >
             Why Us
           </motion.span>
-          <motion.h2
+          <motion.h2 
             className="text-4xl md:text-5xl font-bold mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            Built to <span className="text-gradient">Deliver</span>
+            Why Choose <span className="text-gradient">Pairwise</span>
           </motion.h2>
-          <motion.p
+          <motion.p 
             className="text-lg text-muted-foreground max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Choosing the right partner is everything. Here's what sets us apart and why brands trust us to drive their growth.
+            We combine creativity, technology, and strategy to deliver results that matter.
           </motion.p>
         </motion.div>
 
-        {/* Reasons grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reasons.map((reason, index) => (
             <motion.div
               key={reason.title}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.6,
+              initial={{ opacity: 0, y: 50, rotateX: -10 }}
+              animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+              transition={{ 
+                duration: 0.6, 
                 delay: 0.2 + index * 0.1,
-                ease: [0.215, 0.61, 0.355, 1],
+                ease: [0.215, 0.61, 0.355, 1]
               }}
-              className="group relative"
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
             >
               <motion.div
-                className="relative p-8 rounded-2xl bg-card border border-border overflow-hidden h-full"
-                whileHover={{ y: -8, borderColor: "oklch(0.65 0.25 270 / 0.5)" }}
-                transition={{ duration: 0.3 }}
+                className="group relative p-8 rounded-2xl bg-card border border-border hover:border-primary/50 transition-all duration-300 h-full overflow-hidden"
+                whileHover={{ 
+                  y: -10,
+                  boxShadow: "0 25px 50px -20px oklch(0.65 0.25 270 / 0.3)"
+                }}
               >
-                {/* Gradient overlay on hover */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${reason.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-400`}
-                />
-
-                {/* Bottom accent line */}
+                {/* Background gradient on hover */}
                 <motion.div
-                  className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-primary to-accent"
-                  initial={{ width: 0 }}
-                  whileHover={{ width: "100%" }}
+                  className={`absolute inset-0 bg-gradient-to-br ${reason.gradient} opacity-0`}
+                  animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
                   transition={{ duration: 0.4 }}
                 />
-
+                
+                {/* Glow effect */}
+                <motion.div
+                  className="absolute inset-0 opacity-0"
+                  animate={{ 
+                    opacity: hoveredIndex === index ? 1 : 0,
+                    background: "radial-gradient(circle at 50% 0%, oklch(0.65 0.25 270 / 0.15) 0%, oklch(0 0 0 / 0) 60%)"
+                  }}
+                  transition={{ duration: 0.4 }}
+                />
+                
                 <div className="relative z-10">
                   <motion.div
-                    className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors duration-300"
+                    className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors relative overflow-hidden"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                   >
-                    <reason.icon className="w-7 h-7 text-primary" />
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-transparent"
+                      initial={{ x: "-100%", y: "100%" }}
+                      animate={{ 
+                        x: hoveredIndex === index ? "0%" : "-100%",
+                        y: hoveredIndex === index ? "0%" : "100%"
+                      }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    <motion.div
+                      animate={{ 
+                        rotate: hoveredIndex === index ? [0, -10, 10, 0] : 0,
+                        scale: hoveredIndex === index ? [1, 1.2, 1] : 1
+                      }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <reason.icon className="w-8 h-8 text-primary relative z-10" />
+                    </motion.div>
                   </motion.div>
-
-                  <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors duration-300">
+                  
+                  <motion.h3 
+                    className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors flex items-center gap-2"
+                  >
                     {reason.title}
-                  </h3>
+                    <motion.span
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ 
+                        opacity: hoveredIndex === index ? 1 : 0,
+                        x: hoveredIndex === index ? 0 : -10
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <ArrowRight className="w-4 h-4" />
+                    </motion.span>
+                  </motion.h3>
+                  
                   <p className="text-muted-foreground leading-relaxed">
                     {reason.description}
                   </p>
                 </div>
 
                 {/* Corner accent */}
-                <div className="absolute top-0 right-0 w-20 h-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute top-4 right-4 w-10 h-[1px] bg-gradient-to-l from-primary to-transparent" />
-                  <div className="absolute top-4 right-4 w-[1px] h-10 bg-gradient-to-b from-primary to-transparent" />
-                </div>
+                <motion.div 
+                  className="absolute top-0 right-0 w-24 h-24"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="absolute top-4 right-4 w-12 h-[1px] bg-gradient-to-l from-primary to-transparent" />
+                  <div className="absolute top-4 right-4 w-[1px] h-12 bg-gradient-to-b from-primary to-transparent" />
+                </motion.div>
+
+                {/* Bottom line animation */}
+                <motion.div
+                  className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-primary to-accent"
+                  initial={{ width: 0 }}
+                  animate={{ width: hoveredIndex === index ? "100%" : 0 }}
+                  transition={{ duration: 0.4 }}
+                />
               </motion.div>
             </motion.div>
           ))}
